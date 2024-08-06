@@ -1,0 +1,116 @@
+:root {
+    --primary-color: #007bff;
+    --selected-color: #28a745;
+    --flash-color: #ff0000;
+    --border-color: #ccc;
+    --background-color: #f9f9f9;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .calendar-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .calendar {
+    width: 320px;
+    padding: 20px;
+    background-color: var(--background-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .weather-info {
+    width: 320px;
+    padding: 20px;
+    background-color: var(--background-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+  }
+  
+  .calendar-header button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .calendar-header button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .calendar-header button:hover:not(:disabled) {
+    background-color: darken(var(--primary-color), 10%);
+  }
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+  }
+  
+  .calendar-day-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    background-color: var(--background-color);
+    border-radius: 5px;
+  }
+  
+  .calendar-day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  }
+  
+  .calendar-day:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: scale(1.1); /* Add this line for the hover effect */
+  }
+  
+  .calendar-day.empty {
+    background-color: var(--background-color);
+    cursor: default;
+  }
+  
+  .calendar-day.today {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .calendar-day.selected {
+    background-color: var(--selected-color);
+    color: white;
+  }
+  
+  .calendar-day.flash {
+    background-color: var(--flash-color);
+    color: white;
+    transition: background-color 0.3s;
+  }
+  

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { db } from '@/utilities/firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 
+//Use this to look for any entry in your firebase collection
+
 const EmailSearchAndCollection = () => {
   const [email, setEmail] = useState('');
   const [collectionData, setCollectionData] = useState([]);
@@ -12,12 +14,14 @@ const EmailSearchAndCollection = () => {
 
   const handleSearch = async () => {
     try {
-      console.log('Searching for email:', email); // Debugging log
+      console.log('Searching for email:', email); 
+
+      //edit contact and Bookings if your firebase differs
       const q = query(collection(db, 'Bookings'), where('Contact ', '==', email));
       const querySnapshot = await getDocs(q);
       const data = [];
       querySnapshot.forEach((doc) => {
-        console.log('Document found:', doc.data()); // Debugging log
+        console.log('Document found:', doc.data()); 
         data.push({ 
           id: doc.id, 
           startDate: doc.data()['startDate'], 
@@ -26,7 +30,7 @@ const EmailSearchAndCollection = () => {
       });
       setCollectionData(data);
       
-      console.log('Data fetched:', data); // Debugging log
+      console.log('Data fetched:', data); 
     } catch (error) {
       console.error('Error fetching data:', error);
     }

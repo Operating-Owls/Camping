@@ -5,6 +5,9 @@ import Calendar from "@/components/Calendar";
 import HeroCard from "@/components/Firebase_Components/HeroCardDisplay";
 import ReservationForm from "@/components/Firebase_Components/ReservationForm";
 import EmailSearchAndCollection from "@/components/Firebase_Components/EmailSearchCollection";
+
+//Make sure to npm-i
+
 export default function Home() {
   return (
     <div>

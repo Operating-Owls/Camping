@@ -2,9 +2,15 @@ import React, { useEffect, useState } from 'react';
 import {db} from "../utilities/firebase"
 import { collection, getDocs } from 'firebase/firestore';
 
+
 const DisplayCollection = () => {
   const [campsites, setCampsites] = useState([]);
-//looks in collecton for the table Campsites
+
+
+//looks in collection for the table Campsites
+//Feel free to change the names in firebase and here
+//make sure they match in case and spacing
+
   useEffect(() => {
     const fetchData = async () => {
       try {

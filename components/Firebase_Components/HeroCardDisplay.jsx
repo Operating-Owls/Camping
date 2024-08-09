@@ -4,6 +4,8 @@ import Card from 'react-bootstrap/Card';
 import { db } from '@/utilities/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 
+//use bootstrapto get a hero card and pass in the firebase data
+
 function BasicExample() {
   const [bookings, setBookings] = useState([]);
   const [currentBookingIndex, setCurrentBookingIndex] = useState(0);

@@ -1,0 +1,12 @@
+{
+    "Campsites": {
+      "A001": "available"
+    },
+    "Bookings": [
+      {
+        "contact": "John Doe",
+        "date": "2024-08-08"
+      }
+    ]
+  }
+  

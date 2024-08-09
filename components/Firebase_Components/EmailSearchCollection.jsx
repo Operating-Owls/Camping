@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { db } from '@/firebase_setup/firebase'; // Adjust the path based on your project structure
+import { db } from '@/utilities/firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-//as long as firebase config file is set up and you are connected to intenet we can search for a resevation booking through Contact: email 
-const EmailSearchCollection = () => {
+
+const EmailSearchAndCollection = () => {
   const [email, setEmail] = useState('');
   const [collectionData, setCollectionData] = useState([]);
 
@@ -12,25 +12,29 @@ const EmailSearchCollection = () => {
 
   const handleSearch = async () => {
     try {
+      console.log('Searching for email:', email); // Debugging log
       const q = query(collection(db, 'Bookings'), where('Contact ', '==', email));
       const querySnapshot = await getDocs(q);
       const data = [];
       querySnapshot.forEach((doc) => {
-        data.push(doc.data());
+        console.log('Document found:', doc.data()); // Debugging log
+        data.push({ 
+          id: doc.id, 
+          startDate: doc.data()['startDate'], 
+          endDate: doc.data()['endDate'] 
+        });
       });
       setCollectionData(data);
       
-      console.log(data);
+      console.log('Data fetched:', data); // Debugging log
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
- //input displayed on (html)
+
   return (
     <div>
-      
       <div>
-      
         <input 
           type="text"
           placeholder="Enter email address"
@@ -39,16 +43,20 @@ const EmailSearchCollection = () => {
         />
         <button onClick={handleSearch}>Search</button>
       </div>
-      <ul>
-      {collectionData.map((booking) => (
-  <li key={booking.id}>{booking}</li>
-
-        ))}
-      </ul>
+      {collectionData.length > 0 ? (
+        <ul>
+          {collectionData.map((booking) => (
+            <li key={booking.id}>
+              <p><strong>Start Date:</strong> {booking.startDate}</p>
+              <p><strong>End Date:</strong> {booking.endDate}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No reservations found.</p>
+      )}
     </div>
-    //return the table where the email is correct. Need to put in an error catch or no res found
-
   );
 };
 
-export default EmailSearchCollection;
+export default EmailSearchAndCollection;

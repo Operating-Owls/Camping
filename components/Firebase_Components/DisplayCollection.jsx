@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '@/firebase_setup/firebase';
+import {db} from "../utilities/firebase"
 import { collection, getDocs } from 'firebase/firestore';
 
 const DisplayCollection = () => {
